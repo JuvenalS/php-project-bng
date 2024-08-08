@@ -1,0 +1,9 @@
+# Data volume docker
+data/
+
+# Composer PHP
+src/vendor
+
+# Env config
+.env
+
