@@ -2,6 +2,8 @@
 
 namespace bng\Controllers;
 
+include __DIR__ . '/../init.php';
+
 use bng\Controllers\BaseController;
 use bng\Models\Agents;
 

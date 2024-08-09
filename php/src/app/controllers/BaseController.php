@@ -2,10 +2,6 @@
 
 namespace bng\Controllers;
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 abstract class BaseController
 {
     public function view($view, $data = [])
