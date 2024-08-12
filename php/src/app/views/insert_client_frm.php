@@ -10,7 +10,7 @@
 
                         <hr>
 
-                        <form action="?ct=agent&mt=new_client_submit" method="post">
+                        <form action="?ct=agent&mt=new_client_submit" method="post" novalidate>
 
                             <div class="mb-3">
                                 <label for="text_name" class="form-label">Nome</label>
@@ -63,9 +63,17 @@
                                         class="fa-regular fa-floppy-disk me-2"></i>Guardar</button>
                             </div>
 
-                            <div class="alert alert-danger p-2 text-center">
-                                [mensagem de erro]
-                            </div>
+
+                            <?php if (isset($validation_errors)) : ?>
+                                <div class="alert alert-danger p-2">
+                                    <ul>
+                                        <?php foreach ($validation_errors as $error) : ?>
+                                            <li><?= $error ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+
 
                         </form>
                     </div>
@@ -75,3 +83,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    flatpickr("#text_birthdate", {
+        dateFormat: "d-m-Y"
+    })
+</script>

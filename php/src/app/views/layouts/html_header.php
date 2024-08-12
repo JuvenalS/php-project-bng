@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="public/assets/fontawesome/all.min.css">
     <!-- custom css -->
     <link rel="stylesheet" href="public/assets/app.css">
+    <?php if (isset($flatpickr)): ?>
+    <!-- flatpickr -->
+    <!-- php/src/public/assets/flatpickr -->
+    <link rel="stylesheet" href="public/assets/flatpickr/flatpickr.min.css">
+    <script src="public/assets/flatpickr/flatpickr.js"></script>
+    <?php endif; ?>
 </head>
 
 <body>
