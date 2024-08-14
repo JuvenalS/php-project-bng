@@ -62,3 +62,4 @@
 [2024-08-13T22:28:28.295599+00:00] app_logs.INFO: agente1@bng.com - fez logout [] []
 [2024-08-14T13:09:26.725841+00:00] app_logs.INFO: agente1@bng.com - login com sucesso [] []
 [2024-08-14T13:46:17.144168+00:00] app_logs.INFO: agente1@bng.com - login com sucesso [] []
+[2024-08-14T14:12:04.199665+00:00] app_logs.INFO: agente1@bng.com - adicionou novo cliente: Rui Martins | rui@gmail.com [] []
