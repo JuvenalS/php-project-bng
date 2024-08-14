@@ -205,102 +205,159 @@ class Agent extends BaseController
     // =======================================================
     public function edit_client_submit()
     {
-        printData($_POST);
-        // if (!check_session() || $_SESSION['user']->profile != 'agent' || $_SERVER['REQUEST_METHOD'] != 'POST') {
-        //     header('Location: index.php');
-        // }
+        if (!check_session() || $_SESSION['user']->profile != 'agent' || $_SERVER['REQUEST_METHOD'] != 'POST') {
+            header('Location: index.php');
+        }
 
-        // // form validation
-        // $validation_errors = [];
+        // form validation
+        $validation_errors = [];
 
-        // // text_name
-        // if (empty($_POST['text_name'])) {
-        //     $validation_errors[] = "Nome é de preenchimento obrigatório.";
-        // } else {
-        //     if (strlen($_POST['text_name']) < 3 || strlen($_POST['text_name']) > 50) {
-        //         $validation_errors[] = "O nome deve ter entre 3 e 50 caracteres.";
-        //     }
-        // }
+        // text_name
+        if (empty($_POST['text_name'])) {
+            $validation_errors[] = "Nome é de preenchimento obrigatório.";
+        } else {
+            if (strlen($_POST['text_name']) < 3 || strlen($_POST['text_name']) > 50) {
+                $validation_errors[] = "O nome deve ter entre 3 e 50 caracteres.";
+            }
+        }
 
-        // // gender
-        // if (empty($_POST['radio_gender'])) {
-        //     $validation_errors[] = "É obrigatório definir o género.";
-        // }
+        // gender
+        if (empty($_POST['radio_gender'])) {
+            $validation_errors[] = "É obrigatório definir o género.";
+        }
 
-        // // text_birthdate
-        // if (empty($_POST['text_birthdate'])) {
-        //     $validation_errors[] = "Data de nascimento é obrigatória.";
-        // } else {
-        //     // check if birthdate is valid and is older than today
-        //     $birthdate = \DateTime::createFromFormat('d-m-Y', $_POST['text_birthdate']);
-        //     if (!$birthdate) {
-        //         $validation_errors[] = "A data de nascimento não está no formato correto.";
-        //     } else {
-        //         $today = new \DateTime();
-        //         if ($birthdate >= $today) {
-        //             $validation_errors[] = "A data de nascimento tem que ser anterior ao dia atual.";
-        //         }
-        //     }
-        // }
+        // text_birthdate
+        if (empty($_POST['text_birthdate'])) {
+            $validation_errors[] = "Data de nascimento é obrigatória.";
+        } else {
+            // check if birthdate is valid and is older than today
+            $birthdate = \DateTime::createFromFormat('d-m-Y', $_POST['text_birthdate']);
+            if (!$birthdate) {
+                $validation_errors[] = "A data de nascimento não está no formato correto.";
+            } else {
+                $today = new \DateTime();
+                if ($birthdate >= $today) {
+                    $validation_errors[] = "A data de nascimento tem que ser anterior ao dia atual.";
+                }
+            }
+        }
 
-        // // email
-        // if (empty($_POST['text_email'])) {
-        //     $validation_errors[] = "Email é de preenchimento obrigatório.";
-        // } else {
-        //     if (!filter_var($_POST['text_email'], FILTER_VALIDATE_EMAIL)) {
-        //         $validation_errors[] = "Email não é válido.";
-        //     }
-        // }
+        // email
+        if (empty($_POST['text_email'])) {
+            $validation_errors[] = "Email é de preenchimento obrigatório.";
+        } else {
+            if (!filter_var($_POST['text_email'], FILTER_VALIDATE_EMAIL)) {
+                $validation_errors[] = "Email não é válido.";
+            }
+        }
 
-        // // phone
-        // if (empty($_POST['text_phone'])) {
-        //     $validation_errors[] = "Telefone é de preenchimento obrigatório.";
-        // } else {
-        //     if (!preg_match("/^9{1}\d{8}$/", $_POST['text_phone'])) {
-        //         $validation_errors[] = "O telefone deve começar por 9 e ter 9 algarismos no total.";
-        //     }
-        // }
+        // phone
+        if (empty($_POST['text_phone'])) {
+            $validation_errors[] = "Telefone é de preenchimento obrigatório.";
+        } else {
+            if (!preg_match("/^9{1}\d{8}$/", $_POST['text_phone'])) {
+                $validation_errors[] = "O telefone deve começar por 9 e ter 9 algarismos no total.";
+            }
+        }
 
-        // // check if the id_client is present in POST and is valid
-        // if (empty($_POST['id_client'])) {
-        //     header('Location: index.php');
-        // }
-        // $id_client = aes_decrypt($_POST['id_client']);
-        // if (!$id_client) {
-        //     header('Location: index.php');
-        // }
+        // check if the id_client is present in POST and is valid
+        if (empty($_POST['id_client'])) {
+            header('Location: index.php');
+        }
+        $id_client = aes_decrypt($_POST['id_client']);
+        if (!$id_client) {
+            header('Location: index.php');
+        }
 
-        // // check if there are validation errors to return to the form
-        // if (!empty($validation_errors)) {
-        //     $_SESSION['validation_errors'] = $validation_errors;
-        //     $this->edit_client(aes_encrypt($id_client));
-        //     return;
-        // }
+        // check if there are validation errors to return to the form
+        if (!empty($validation_errors)) {
+            $_SESSION['validation_errors'] = $validation_errors;
+            $this->edit_client(aes_encrypt($id_client));
+            return;
+        }
 
-        // // check if there is another agent's client with the same name
-        // $model = new Agents();
-        // $results = $model->check_other_client_with_same_name($id_client, $_POST['text_name']);
+        // check if there is another agent's client with the same name
+        $model = new Agents();
+        $results = $model->check_other_client_with_same_name($id_client, $_POST['text_name']);
 
-        // // check if there is...
-        // if ($results['status']) {
-        //     $_SESSION['server_error'] = "Já existe outro cliente com o mesmo nome.";
-        //     $this->edit_client(aes_encrypt($id_client));
-        //     return;
-        // }
+        // check if there is...
+        if ($results['status']) {
+            $_SESSION['server_error'] = "Já existe outro cliente com o mesmo nome.";
+            $this->edit_client(aes_encrypt($id_client));
+            return;
+        }
 
-        // // updates the agent's client data in the database
-        // $model->update_client_data($id_client, $_POST);
+        // updates the agent's client data in the database
+        $model->update_client_data($id_client, $_POST);
 
-        // // logger
-        // logger(get_active_user_name() . " - atualizou dados do cliente ID: " . $id_client);
+        // logger
+        logger(get_active_user_name() . " - atualizou dados do cliente ID: " . $id_client);
 
-        // // return to the main clients page
-        // $this->my_clients();
+        // return to the main clients page
+        $this->my_clients();
     }
 
     // =======================================================
     public function delete_client($id)
     {
-        echo "eliminar " . aes_decrypt($id);
+        if (
+            !check_session() || $_SESSION['user']->profile != 'agent'
+        ) {
+            header('Location: index.php');
+        }
+
+        // check if the $id is valid
+        $id_client = aes_decrypt($id);
+        if (!$id_client) {
+
+            // id_client is invalid
+            header('Location: index.php');
+        }
+
+        // loads the model to get the client's data
+        $model = new Agents();
+        $results = $model->get_client_data($id_client);
+
+        if (empty($results['data'])) {
+            header('Location: index.php');
+        }
+
+        // display the view
+        $data['user'] = $_SESSION['user'];
+        $data['client'] = $results['data'];
+
+        $this->view('layouts/html_header');
+        $this->view('navbar', $data);
+        $this->view('delete_client_confirmation', $data);
+        $this->view('footer');
+        $this->view('layouts/html_footer');
+    }
+
+    // =======================================================
+    public function delete_client_confirm($id)
+    {
+        if (
+            !check_session() || $_SESSION['user']->profile != 'agent'
+        ) {
+            header('Location: index.php');
+        }
+
+        // check if the $id is valid
+        $id_client = aes_decrypt($id);
+        if (!$id_client) {
+
+            // id_client is invalid
+            header('Location: index.php');
+        }
+
+        // loads the model to delete the client's data
+        $model = new Agents();
+        $model->delete_client($id_client);
+
+        // logger
+        logger(get_active_user_name() . ' - Eliminado o cliente id: ' . $id_client);
+
+        // returns to the agent's main page
+        $this->my_clients();
     }
 }
