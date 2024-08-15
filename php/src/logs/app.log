@@ -92,3 +92,6 @@
 [2024-08-15T22:15:06.631334+00:00] app_logs.ERROR: agente1@bng.com - tentou carregar um ficheiro com header incorreto: dados_clientes_1_header_invalido.csv [] []
 [2024-08-15T22:15:38.854697+00:00] app_logs.INFO: agente1@bng.com - carregamento de ficheiro efetuado: dados_clientes_1.csv [] []
 [2024-08-15T22:15:38.860177+00:00] app_logs.INFO: agente1@bng.com - report: {"total":4,"total_carregados":4,"total_nao_carregados":0} [] []
+[2024-08-15T22:24:03.843328+00:00] app_logs.INFO: agente1@bng.com - carregamento de ficheiro efetuado: dados_clientes_1.xlsx [] []
+[2024-08-15T22:24:03.848774+00:00] app_logs.INFO: agente1@bng.com - report: {"total":4,"total_carregados":0,"total_nao_carregados":4} [] []
+[2024-08-15T22:33:23.590035+00:00] app_logs.INFO: agente1@bng.com - fez download da lista de clientes para o ficheiro: output_1723761202.xlsx | total: 8 registos. [] []
