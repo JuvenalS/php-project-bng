@@ -377,6 +377,12 @@ class Agent extends BaseController
             unset($_SESSION["server_error"]);
         }
 
+        // check if there is a report in session
+        if (!empty($_SESSION["report"])) {
+            $data["report"] = $_SESSION["report"];
+            unset($_SESSION["report"]);
+        }
+
         $this->view("layouts/html_header");
         $this->view("navbar", $data);
         $this->view("upload_file_with_clients_frm", $data);
