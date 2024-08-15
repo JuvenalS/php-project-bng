@@ -13,7 +13,8 @@
 
                         <hr>
 
-                        <form action="?ct=agent&mt=upload_file_submit" method="post" enctype="multipart/form-data">
+                        <form action="?ct=agent&mt=upload_file_submit" method="post" enctype="multipart/form-data"
+                            novalidate>
 
                             <div class="mb-4">
                                 <label for="clients_file" class="form-label">Ficheiro de clientes</label>
@@ -28,9 +29,11 @@
                                         class="fa-solid fa-upload me-2"></i>Carregar</button>
                             </div>
 
-                            <div class="alert alert-danger p-2 text-center">
-                                [mensagem de erro]
-                            </div>
+                            <?php if (isset($server_error)) : ?>
+                                <div class="alert alert-danger p-2 text-center">
+                                    <?= $server_error ?>
+                                </div>
+                            <?php endif; ?>
 
                         </form>
                     </div>

@@ -80,3 +80,6 @@
 [2024-08-15T20:24:28.245181+00:00] app_logs.INFO: agente1@bng.com - login com sucesso [] []
 [2024-08-15T20:24:36.248946+00:00] app_logs.INFO: agente1@bng.com - fez logout [] []
 [2024-08-15T20:24:45.175401+00:00] app_logs.INFO: agente1@bng.com - login com sucesso [] []
+[2024-08-15T21:16:01.032963+00:00] app_logs.ERROR: agente1@bng.com - aconteceu um erro inesperado no carregamento do ficheiro: dados_clientes_1.csv [] []
+[2024-08-15T21:57:11.879224+00:00] app_logs.INFO: agente1@bng.com - carregamento de ficheiro efetuado: dados_clientes_1.csv [] []
+[2024-08-15T21:57:11.885337+00:00] app_logs.INFO: agente1@bng.com - report: {"total":4,"total_carregados":4,"total_nao_carregados":0} [] []
