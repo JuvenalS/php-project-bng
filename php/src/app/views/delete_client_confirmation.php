@@ -21,7 +21,6 @@
                     <a href="?ct=agent&mt=delete_client_confirm&id=<?= aes_encrypt($client->id) ?>"
                         class="btn btn-secondary px-5"><i class="fa-solid fa-check me-2"></i>Sim</a>
                 </div>
-
             </div>
         </div>
     </div>
