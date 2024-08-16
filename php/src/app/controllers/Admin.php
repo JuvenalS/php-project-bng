@@ -75,7 +75,42 @@ class Admin extends BaseController
     }
 
     // =================================================================
+    public function stats()
+    {
+        // check if session has a user with admin profile
+        if (!check_session() || $_SESSION['user']->profile != 'admin') {
+            header('Location: index.php');
+        }
 
+        // get totals from agent's clients
+        $model = new AdminModel();
+        $data['agents'] = $model->get_agents_clients_stats();
+
+        // display the stats page
+        $data['user'] = $_SESSION['user'];
+
+        // prepare data to chartjs
+        if (count($data['agents']) != 0) {
+            $labels_tmp = [];
+            $totals_tmp = [];
+            foreach ($data['agents'] as $agent) {
+                $labels_tmp[] = $agent->agente;
+                $totals_tmp[] = $agent->total_clientes;
+            }
+            $data['chart_labels'] = '["' . implode('","', $labels_tmp) . '"]';
+            $data['chart_totals'] = '[' . implode(',', $totals_tmp) . ']';
+            $data['chartjs'] = true;
+        }
+
+        // get global stats
+        $data['global_stats'] = $model->get_global_stats();
+
+        $this->view('layouts/html_header', $data);
+        $this->view('navbar', $data);
+        $this->view('stats', $data);
+        $this->view('footer');
+        $this->view('layouts/html_footer');
+    }
 
     // =================================================================
 
