@@ -116,3 +116,7 @@
 [2024-08-16T15:55:13.767275+00:00] app_logs.INFO: admin@bng.com - fez download da lista de clientes para o ficheiro: output_1723823710.xlsx | total: 10 registos. [] []
 [2024-08-16T16:09:16.653059+00:00] app_logs.INFO: admin@bng.com - fez logout [] []
 [2024-08-16T19:09:37.202934+00:00] app_logs.INFO: admin@bng.com - login com sucesso [] []
+[2024-08-16T22:45:30.270115+00:00] app_logs.INFO: admin@bng.com - login com sucesso [] []
+[2024-08-16T23:25:52.208995+00:00] app_logs.INFO: admin@bng.com - visualizou o PDF com o report estatístico. [] []
+[2024-08-16T23:27:02.172571+00:00] app_logs.INFO: admin@bng.com - visualizou o PDF com o report estatístico. [] []
+[2024-08-16T23:27:32.789171+00:00] app_logs.INFO: admin@bng.com - visualizou o PDF com o report estatístico. [] []

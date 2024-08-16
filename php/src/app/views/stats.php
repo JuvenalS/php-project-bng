@@ -21,24 +21,24 @@
 
 
                         <?php if (count($agents) == 0) : ?>
-                        <p class="text-center">Não foram encontrados dados.</p>
+                            <p class="text-center">Não foram encontrados dados.</p>
                         <?php else : ?>
-                        <table class="table table-striped table-bordered" id="table_agents">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Agente</th>
-                                    <th class="text-center">Clientes registados</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($agents as $agent) : ?>
-                                <tr>
-                                    <td><?= $agent->agente ?></td>
-                                    <td class="text-center"><?= $agent->total_clientes ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                            <table class="table table-striped table-bordered" id="table_agents">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Agente</th>
+                                        <th class="text-center">Clientes registados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($agents as $agent) : ?>
+                                        <tr>
+                                            <td><?= $agent->agente ?></td>
+                                            <td class="text-center"><?= $agent->total_clientes ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         <?php endif; ?>
 
                     </div>
@@ -86,13 +86,13 @@
                                     <tr>
                                         <td class="text-start">Idade do cliente mais novo:</td>
                                         <td class="text-start">
-                                            <strong><?= empty($global_stats['younger_client']->value) ? 0 : $global_stats['younger_client']->value ?></strong>
+                                            <strong><?= empty($global_stats['younger_client']->value) ? "" : $global_stats['younger_client']->value ?></strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-start">Idade do cliente mais velho:</td>
                                         <td class="text-start">
-                                            <strong><?= empty($global_stats['oldest_client']->value) ? 0 : $global_stats['oldest_client']->value ?></strong>
+                                            <strong><?= empty($global_stats['oldest_client']->value) ? "" : $global_stats['oldest_client']->value ?></strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -140,63 +140,63 @@
 </div>
 
 <script>
-// datatables
-$(document).ready(function() {
+    // datatables
+    $(document).ready(function() {
 
-    // datatable
-    $('#table_agents').DataTable({
-        pageLength: 10,
-        pagingType: "full_numbers",
-        language: {
-            decimal: "",
-            emptyTable: "Sem dados disponíveis na tabela.",
-            info: "Mostrando _START_ até _END_ de _TOTAL_ registos",
-            infoEmpty: "Mostrando 0 até 0 de 0 registos",
-            infoFiltered: "(Filtrando _MAX_ total de registos)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Mostrando _MENU_ registos por página.",
-            loadingRecords: "Carregando...",
-            processing: "Processando...",
-            search: "Filtrar:",
-            zeroRecords: "Nenhum registro encontrado.",
-            paginate: {
-                first: "Primeira",
-                last: "Última",
-                next: "Seguinte",
-                previous: "Anterior"
-            },
-            aria: {
-                sortAscending: ": ative para classificar a coluna em ordem crescente.",
-                sortDescending: ": ative para classificar a coluna em ordem decrescente."
-            }
-        }
-    });
-})
-
-// chartjs
-<?php if (count($agents) != 0) : ?>
-
-new Chart(
-    document.querySelector('#chartjs_chart'), {
-        type: 'bar',
-        data: {
-            labels: <?= $chart_labels ?>,
-            datasets: [{
-                label: 'Total de clientes por agente',
-                data: <?= $chart_totals ?>,
-                backgroundColor: 'rgb(50,100,200)',
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        // datatable
+        $('#table_agents').DataTable({
+            pageLength: 10,
+            pagingType: "full_numbers",
+            language: {
+                decimal: "",
+                emptyTable: "Sem dados disponíveis na tabela.",
+                info: "Mostrando _START_ até _END_ de _TOTAL_ registos",
+                infoEmpty: "Mostrando 0 até 0 de 0 registos",
+                infoFiltered: "(Filtrando _MAX_ total de registos)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrando _MENU_ registos por página.",
+                loadingRecords: "Carregando...",
+                processing: "Processando...",
+                search: "Filtrar:",
+                zeroRecords: "Nenhum registro encontrado.",
+                paginate: {
+                    first: "Primeira",
+                    last: "Última",
+                    next: "Seguinte",
+                    previous: "Anterior"
+                },
+                aria: {
+                    sortAscending: ": ative para classificar a coluna em ordem crescente.",
+                    sortDescending: ": ative para classificar a coluna em ordem decrescente."
                 }
             }
-        },
-    }
-);
+        });
+    })
 
-<?php endif; ?>
+    // chartjs
+    <?php if (count($agents) != 0) : ?>
+
+        new Chart(
+            document.querySelector('#chartjs_chart'), {
+                type: 'bar',
+                data: {
+                    labels: <?= $chart_labels ?>,
+                    datasets: [{
+                        label: 'Total de clientes por agente',
+                        data: <?= $chart_totals ?>,
+                        backgroundColor: 'rgb(50,100,200)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                },
+            }
+        );
+
+    <?php endif; ?>
 </script>
