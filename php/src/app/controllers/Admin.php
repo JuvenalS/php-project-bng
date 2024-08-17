@@ -229,4 +229,29 @@ class Admin extends BaseController
     }
 
     // =================================================================
+    public function agents_management()
+    {
+        // check if session has a user with admin profile
+        if (!check_session() || $_SESSION['user']->profile != 'admin') {
+            header('Location: index.php');
+        }
+
+        //echo "Sessão válida e usuário é admin.";
+
+        // get agents
+        $model = new AdminModel();
+        $results = $model->get_agents_for_management();
+        $data['agents'] = $results->results;
+
+        $data['user'] = $_SESSION['user'];
+
+        $this->view('layouts/html_header', $data);
+        $this->view('navbar', $data);
+        $this->view(
+            'agents_management',
+            $data
+        );
+        $this->view('footer');
+        $this->view('layouts/html_footer');
+    }
 }
