@@ -315,4 +315,24 @@ class AdminModel extends BaseModel
         );
         return $results;
     }
+
+    // =======================================================
+    public function recover_agent($id)
+    {
+        // recover the agent
+        $params = [
+            ':id' => $id
+        ];
+        $this->db_connect();
+        $results = $this->non_query(
+            "UPDATE agents SET " .
+                "deleted_at = NULL " .
+                "WHERE id = :id",
+            $params
+        );
+        return $results;
+    }
+
+    // =======================================================
+
 }

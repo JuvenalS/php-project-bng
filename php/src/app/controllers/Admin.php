@@ -551,4 +551,69 @@ class Admin extends BaseController
         // go to the main page
         $this->agents_management();
     }
+
+    // =======================================================
+    public function edit_recover($id = '')
+    {
+        // check if session has a user with admin profile
+        if (!check_session() || $_SESSION['user']->profile != 'admin') {
+            header('Location: index.php');
+        }
+
+        // check if id is valid
+        $id = aes_decrypt($id);
+        if (!$id) {
+            header('Location: index.php');
+        }
+
+        // get agent data
+        $model = new AdminModel();
+        $results = $model->get_agent_data_and_total_clients($id);
+
+        // display page for confirmation
+        $data['user'] = $_SESSION['user'];
+        $data['agent'] = $results->results[0];
+
+        // display the edit agent form
+        $this->view('layouts/html_header', $data);
+        $this->view('navbar', $data);
+        $this->view('agents_recover_confirmation', $data);
+        $this->view('footer');
+        $this->view('layouts/html_footer');
+    }
+
+    // =======================================================
+    public function recover_agent_confirm($id = '')
+    {
+        // check if session has a user with admin profile
+        if (!check_session() || $_SESSION['user']->profile != 'admin') {
+            header('Location: index.php');
+        }
+
+        // check if id is valid
+        $id = aes_decrypt($id);
+        if (!$id) {
+            header('Location: index.php');
+        }
+
+        // get agent data
+        $model = new AdminModel();
+        $results = $model->recover_agent($id);
+
+        if ($results->status == 'success') {
+
+            // logger
+            logger(get_active_user_name() . " - recuperado com sucesso o agente ID: $id");
+        } else {
+
+            // logger
+            logger(get_active_user_name() . " - aconteceu um erro na recuperação do agente ID: $id", 'error');
+        }
+
+        // go to the main page
+        $this->agents_management();
+    }
+
+    // =======================================================
+
 }
