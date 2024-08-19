@@ -80,7 +80,7 @@ class AdminModel extends BaseModel
         // younger client
         $tmp = $this->query("SELECT TIMESTAMPDIFF(YEAR,birthdate,CURDATE()) value FROM persons ORDER BY birthdate DESC LIMIT 1");
         if ($tmp->affected_rows == 0) {
-            $results['younger_client'] = 0;
+            $results['younger_client'] = null;
         } else {
             $results['younger_client'] = $tmp->results[0];
         }
