@@ -129,7 +129,7 @@ class Admin extends BaseController
         $agents = $model->get_agents_clients_stats();
         $global_stats = $model->get_global_stats();
 
-        // generate PDF file
+        // generate PDF file \Mpdf\Mpdf
         $pdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4',
