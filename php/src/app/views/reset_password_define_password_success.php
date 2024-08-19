@@ -8,13 +8,46 @@
                     <h2><strong><?= APP_NAME ?></strong></h2>
                 </div>
 
-                <h1 class="text-center text-success mb-3"><i class="fa-solid fa-circle-check"></i></h1>
+                <div class="row justify-content-center">
+                    <div class="col-8">
 
-                <p class="text-center">A sua nova password foi definida com sucesso.</p>
+                        <form action="?ct=main&mt=reset_define_password_submit&id=<?= aes_encrypt($id) ?>"
+                            method="post">
 
-                <div class="text-center my-3">
-                    <a href="?ct=main&mt=index" class="btn btn-secondary px-4"><i
-                            class="fa-solid fa-chevron-left me-2"></i>Voltar</a>
+                            <p class="mb-3">Introduza os dados da <strong>nova password</strong>.</p>
+
+                            <div class="mb-3">
+                                <label for="text_new_password" class="form-label">Nova password</label>
+                                <input type="password" name="text_new_password" id="text_new_password"
+                                    class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="text_repeat_new_password" class="form-label">Repetir a nova password</label>
+                                <input type="password" name="text_repeat_new_password" id="text_repeat_new_password"
+                                    class="form-control" required>
+                            </div>
+
+                            <div class="mb-3 text-center">
+                                <button type="submit" class="btn btn-secondary"><i
+                                        class="fa-solid fa-key me-2"></i>Definir password</button>
+                            </div>
+
+                            <?php if (!empty($validation_error)) : ?>
+                            <div class="alert alert-danger p-2 text-center">
+                                <?= $validation_error ?>
+                            </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($server_error)) : ?>
+                            <div class="alert alert-danger p-2 text-center">
+                                <?= $server_error ?>
+                            </div>
+                            <?php endif; ?>
+
+                        </form>
+
+                    </div>
                 </div>
 
             </div>

@@ -4,7 +4,7 @@
             <div class="card p-4 mb-5">
 
 
-                <form action="?ct=main&mt=change_password_submit" method="post" novalidate>
+                <form action="?ct=main&mt=change_password_submit" method="post">
                     <div class="row justify-content-center">
                         <div class="col-8">
 
@@ -43,23 +43,23 @@
                 </form>
 
                 <?php if (isset($validation_errors)) : ?>
-                <div class="alert alert-danger p-2 text-center">
-                    <ul>
-                        <?php foreach ($validation_errors as $error) : ?>
-                        <li><?= $error ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
+                    <div class="alert alert-danger p-2 text-center">
+                        <ul>
+                            <?php foreach ($validation_errors as $error) : ?>
+                                <li><?= $error ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 <?php endif; ?>
 
                 <?php if (isset($server_errors)) : ?>
-                <div class="alert alert-danger p-2 text-center">
-                    <ul>
-                        <?php foreach ($server_errors as $error) : ?>
-                        <li><?= $error ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
+                    <div class="alert alert-danger p-2 text-center">
+                        <ul>
+                            <?php foreach ($server_errors as $error) : ?>
+                                <li><?= $error ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 <?php endif; ?>
 
             </div>
