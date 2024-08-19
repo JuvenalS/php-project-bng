@@ -127,3 +127,4 @@
 [2024-08-19T14:58:02.030425+00:00] app_logs.INFO: admin@bng.com - login com sucesso [] []
 [2024-08-19T14:58:39.600257+00:00] app_logs.ERROR: admin@bng.com - não foi possível enviar o email para conclusão do registo: agente5@bng.com - erro: Could not instantiate mail function. [] []
 [2024-08-19T14:59:33.277047+00:00] app_logs.INFO: admin@bng.com - fez logout [] []
+[2024-08-19T17:29:19.450451+00:00] app_logs.INFO: admin@bng.com - login com sucesso [] []
