@@ -142,3 +142,4 @@
 [2024-08-19T22:53:27.260184+00:00] app_logs.INFO: admin@bng.com - login com sucesso [] []
 [2024-08-19T22:54:16.013177+00:00] app_logs.INFO: admin@bng.com - fez logout [] []
 [2024-08-19T22:58:25.474458+00:00] app_logs.INFO: agent1@bng.com - login com sucesso [] []
+[2024-08-19T23:25:02.160986+00:00] app_logs.INFO: agent1@bng.com - fez logout [] []
